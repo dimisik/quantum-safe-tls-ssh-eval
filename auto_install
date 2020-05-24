@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#Install Openssl 1.1.1
+# cd /tmp
+#   wget https://www.openssl.org/source/openssl-1.1.1g.tar.gz
+#   tar xvf openssl-1.1.1g.tar.gz
+#   cd openssl-1.1.1g/
+#    sudo ./config -Wl,--enable-new-dtags,-rpath,'$(LIBRPATH)' --prefix=/usr/local/openssl13 --openssldir=/usr/local/openssl13
+#   sudo make
+#   sudo make install
+
+
+
+dir="$(pwd)"
+
+git clone --branch OQS-OpenSSL_1_1_1-stable https://github.com/open-quantum-safe/openssl.git
+
+
+git clone --branch master https://github.com/open-quantum-safe/liboqs.git
+cd liboqs/
+mkdir build && cd build
+cmake -GNinja -DCMAKE_INSTALL_PREFIX=$dir/openssl/oqs  -DOQS_USE_CPU_EXTENSIONS=ON -DOQS_SIG_DEFAULT="OQS_SIG_alg_sphincs_sha256_128f_simple" ..
+ninja
+ninja install
+
+cd ../../
+cd openssl/
+./Configure no-shared linux-x86_64 -lm
+make -j
