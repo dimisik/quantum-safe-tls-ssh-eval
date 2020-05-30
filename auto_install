@@ -19,7 +19,7 @@ git clone --branch OQS-OpenSSL_1_1_1-stable https://github.com/open-quantum-safe
 git clone --branch master https://github.com/open-quantum-safe/liboqs.git
 cd liboqs/
 mkdir build && cd build
-cmake -GNinja -DCMAKE_INSTALL_PREFIX=$dir/openssl/oqs  -DOQS_USE_CPU_EXTENSIONS=ON -DOQS_SIG_DEFAULT="OQS_SIG_alg_sphincs_sha256_128f_simple" ..
+cmake -GNinja -DCMAKE_INSTALL_PREFIX=$dir/openssl/oqs  -DOQS_USE_CPU_EXTENSIONS=ON -DOPENSSL_ROOT_DIR=/usr/local/openssl13 -DOQS_SIG_DEFAULT="OQS_SIG_alg_sphincs_sha256_192f_simple" ..
 ninja
 ninja install
 
