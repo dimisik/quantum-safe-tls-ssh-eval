@@ -1,7 +1,7 @@
 # quantum-safe-tls-ssh-eval
 Scripts for evaluating Post-Quantum authentication and key exchange in SSH
 
-## Descriptions
+## Script Descriptions
 
 **auto_install_ssh**: Automated installation of liboqs and OQS openssh
 
