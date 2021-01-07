@@ -13,4 +13,4 @@ Scripts for evaluating Post-Quantum authentication and key exchange in SSH
 
 **tshark_config_run_ssh**: tshark command for packet capture
 
-**handshake_time_ssh**: Python script to measure ssh handshake time
+**handshake_time_ssh**: Python script to measure ssh handshake time - trace parsing 
