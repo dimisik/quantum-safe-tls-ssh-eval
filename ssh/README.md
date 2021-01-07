@@ -2,14 +2,15 @@
 Scripts for evaluating Post-Quantum authentication and key exchange in SSH
 
 ## Descriptions
-auto_install_ssh: Automated installation of liboqs and OQS openssh
 
-loop_ssh_client_control: Client loop (input =  number of iterations) for ssh establishment - Control group
+**auto_install_ssh**: Automated installation of liboqs and OQS openssh
 
-loop_ssh_client_x_y: Client loop (input =  number of iterations) for ssh establishment - x: PQ authentication algorithm, y: PQ key exchange algorithm
+**loop_ssh_client_control**: Client loop (input =  number of iterations) for ssh establishment - Control group
 
-other_procedures_notes_dil4: Commands for key generation at server/client
+**loop_ssh_client_x_y**: Client loop (input =  number of iterations) for ssh establishment - x: PQ authentication algorithm, y: PQ key exchange algorithm
 
-tshark_config_run_ssh: tshark command for packet capture
+**other_procedures_notes_x**: Commands for key generation at server/client (x: PQ authentication algorithm)
 
-handshake_time_ssh: Python script to measure ssh handshake time
+**tshark_config_run_ssh**: tshark command for packet capture
+
+**handshake_time_ssh**: Python script to measure ssh handshake time
