@@ -1,29 +1,10 @@
 #!/bin/bash
 
-#Install Openssl 1.1.1
-# cd /tmp
-#   wget https://www.openssl.org/source/old/1.1.1/openssl-1.1.1.tar.gz
-#   tar xvf openssl-1.1.1.tar.gz
-#   cd openssl-1.1.1/
-#    sudo ./config -Wl,--enable-new-dtags,-rpath,'$(LIBRPATH)' --prefix=/usr/local/openssl13 --openssldir=/usr/local/openssl13
-#   sudo make
-#   sudo make install
-
-
-#Dependencies
-#sudo apt install autoconf automake cmake gcc libtool libssl-dev make ninja-build unzip xsltproc zlib1g-dev
-
-#  sudo mkdir -p -m 0755 /var/empty
-
-#    sudo groupadd sshd
-#  sudo useradd -g sshd -c 'sshd privsep' -d /var/empty -s /bin/false sshd
-
-
 
 dir="$(pwd)"
 
 
-#   OQS_SIG_alg_dilithium_2 
+#   Auto install liboqs and oqs openssh
 git clone --branch OQS-master https://github.com/open-quantum-safe/openssh.git
 git clone --branch master https://github.com/open-quantum-safe/liboqs.git
 cd liboqs/

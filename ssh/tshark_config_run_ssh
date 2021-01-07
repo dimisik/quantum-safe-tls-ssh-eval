@@ -1,0 +1,3 @@
+#/usr/bin/bash
+# Capture at port 2221
+tshark -i any -f "tcp port 2221" -w test1.pcap

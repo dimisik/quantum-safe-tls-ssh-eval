@@ -1,0 +1,24 @@
+#!/bin/bash
+#Other commands used during benchmarking
+
+# Generate keys at server
+mkdir ~/ssh_server/
+chmod 700 ~/ssh_server/
+touch ~/ssh_server/authorized_keys
+chmod 600 ~/ssh_server/authorized_keys
+/home/dsike/dilithium4/quantum-safe-tls-ssh-eval/ssh/openssh-dir/bin/ssh-keygen -t ssh-oqsdefault  -f ~/ssh_server/id_oqsdefault
+
+
+# Generate keys at client
+mkdir ~/ssh_client/
+/home/dsike/Desktop/pq_ssh/dilithium4/openssh-dir/bin/ssh-keygen -t ssh-oqsdefault -f ~/ssh_client/id_oqsdefault
+
+
+# Concatenate at server
+
+cat /home/dsike/id_oqsdefault.pub >> /home/dsike/ssh_server/authorized_keys
+
+
+
+
+
