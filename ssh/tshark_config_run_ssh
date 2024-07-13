@@ -1,3 +1,15 @@
-#/usr/bin/bash
-# Capture at port 2221
-tshark -i any -f "tcp port 2221" -w test1.pcap
+#!/usr/bin/bash
+
+# This script captures network traffic on port 2221 and saves it to a pcap file using tshark
+
+# Set the output pcap file name
+output_file="test1.pcap"
+
+# Define the port to capture traffic on
+port=2221
+
+# Run tshark to capture traffic on the specified port and write to the output file
+tshark -i any -f "tcp port $port" -w $output_file
+
+# Print a message indicating the capture has started
+echo "Packet capture started on port $port. Output file: $output_file"
