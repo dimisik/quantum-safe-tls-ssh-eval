@@ -1,29 +1,45 @@
 #!/bin/bash
 
+# This script automates the installation of liboqs and OQS openssh.
 
+# Set the current directory
 dir="$(pwd)"
 
-
-#   Auto install liboqs and oqs openssh
+# Clone liboqs and openssh repositories
 git clone --branch OQS-master https://github.com/open-quantum-safe/openssh.git
 git clone --branch master https://github.com/open-quantum-safe/liboqs.git
+
+# Navigate to the liboqs directory and build
 cd liboqs/
 mkdir build && cd build
-cmake -GNinja -DCMAKE_POSITION_INDEPENDENT_CODE=yes -DCMAKE_INSTALL_PREFIX=$dir/openssh-dir/oqs  -DOQS_USE_CPU_EXTENSIONS=ON -DOPENSSL_ROOT_DIR=/usr/local/openssl13 -DOQS_SIG_DEFAULT="OQS_SIG_alg_sphincs_sha256_128f_simple" -DOQS_KEM_DEFAULT="OQS_KEM_alg_ntru_hrss701" ..
+cmake -GNinja \
+    -DCMAKE_POSITION_INDEPENDENT_CODE=yes \
+    -DCMAKE_INSTALL_PREFIX=$dir/openssh-dir/oqs \
+    -DOQS_USE_CPU_EXTENSIONS=ON \
+    -DOPENSSL_ROOT_DIR=/usr/local/openssl13 \
+    -DOQS_SIG_DEFAULT="OQS_SIG_alg_sphincs_sha256_128f_simple" \
+    -DOQS_KEM_DEFAULT="OQS_KEM_alg_ntru_hrss701" ..
 ninja
 ninja install
 
+# Navigate back to the root directory and then to the openssh directory
 cd ../../
 cd openssh/
+
+# Set environment variables for liboqs and openssh installation paths
 export LIBOQS_INSTALL=$dir/liboqs/build/
 export OPENSSH_INSTALL=$dir/openssh-dir/
-autoreconf
 
+# Perform autoreconf and configure openssh with liboqs
+autoreconf
 ./configure --with-ssl-dir=/usr/local/openssl13/include \
-            --with-ldflags=-L/usr/local/openssl13/lib   \
-            --with-libs=-lm                          \
-            --prefix=$OPENSSH_INSTALL                \
-            --sysconfdir=$OPENSSH_INSTALL            \
+            --with-ldflags=-L/usr/local/openssl13/lib \
+            --with-libs=-lm \
+            --prefix=$OPENSSH_INSTALL \
+            --sysconfdir=$OPENSSH_INSTALL \
             --with-liboqs-dir=$LIBOQS_INSTALL
 make -j
 make install
+
+# Print a completion message
+echo "liboqs and OQS openssh installation completed."
