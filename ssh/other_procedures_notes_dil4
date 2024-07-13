@@ -1,24 +1,31 @@
 #!/bin/bash
-#Other commands used during benchmarking
 
-# Generate keys at server
-mkdir ~/ssh_server/
+# This script contains commands used during benchmarking for generating SSH keys 
+# at both the server and client, and configuring the server for authorized keys
+
+# Generate SSH keys at the server
+
+# Create the directory for the SSH server if it doesn't exist
+mkdir -p ~/ssh_server/
 chmod 700 ~/ssh_server/
+
+# Create the authorized_keys file and set the correct permissions
 touch ~/ssh_server/authorized_keys
 chmod 600 ~/ssh_server/authorized_keys
-/home/dsike/dilithium4/quantum-safe-tls-ssh-eval/ssh/openssh-dir/bin/ssh-keygen -t ssh-oqsdefault  -f ~/ssh_server/id_oqsdefault
 
+# Generate SSH keys using the specified algorithm
+/home/dsike/dilithium4/quantum-safe-tls-ssh-eval/ssh/openssh-dir/bin/ssh-keygen -t ssh-oqsdefault -f ~/ssh_server/id_oqsdefault
 
-# Generate keys at client
-mkdir ~/ssh_client/
+# Generate SSH keys at the client
+
+# Create the directory for the SSH client if it doesn't exist
+mkdir -p ~/ssh_client/
+
+# Generate SSH keys using the specified algorithm
 /home/dsike/Desktop/pq_ssh/dilithium4/openssh-dir/bin/ssh-keygen -t ssh-oqsdefault -f ~/ssh_client/id_oqsdefault
 
-
-# Concatenate at server
-
+# Concatenate the client's public key to the server's authorized_keys file
 cat /home/dsike/id_oqsdefault.pub >> /home/dsike/ssh_server/authorized_keys
 
-
-
-
-
+# Print a message indicating the process is complete
+echo "SSH key generation and server configuration complete."
